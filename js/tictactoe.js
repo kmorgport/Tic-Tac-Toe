@@ -33,18 +33,15 @@ function updateXDisplay(tile){
 
 
 }
-function isTrue(arr, arr2){
-    return arr.some(i=>arr2.includes(i))
-}
-function checkWinner(arr1, arr2) {
-    let a =
-    for(let i=0;i<arr2.length; i++){
-        if(isTrue(arr1,arr2[i])) {
-            console.log(true)
-        }else {
-            console.log(false)
-        }
-        }
+function checkWinner(playerArray, winningArray) {
+    if(playerArray.length<3)return
+    else {
+        winningArray.forEach(combo => {
+            if (playerArray[0] === combo[0] && playerArray[1] === combo[1] && playerArray[2] === combo[2]) {
+                alert('winner')
+            }
+        })
+    }
 }
 
 
@@ -57,13 +54,7 @@ function updateODisplay(tile){
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
-        // tictactoe.computerGoes()
-        // tictactoe.checkWinner()
-    })
-})
-display.forEach(tile=>{
-    tile.addEventListener('click',()=>{
-        checkWinner(playerArray,winningArray);
+         checkWinner(playerArray,winningArray)
         // tictactoe.computerGoes()
         // tictactoe.checkWinner()
     })
