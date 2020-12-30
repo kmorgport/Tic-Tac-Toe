@@ -28,20 +28,24 @@ function updateXDisplay(tile){
         tile.appendChild(img);
         const num = tile.getAttribute("id")
         playerArray.push(parseInt(num))
-        console.log(playerArray)
         playerArray.sort();
+        console.log(playerArray)
+
+
+}
+
+function isTrue(arr, arr2){
+   if(arr.some(i=>arr2.includes(i))){
+       alert('you won')
+   }
+
 
 
 }
 function checkWinner(playerArray, winningArray) {
     if(playerArray.length<3)return
-    else {
-        winningArray.forEach(combo => {
-            if (playerArray[0] === combo[0] && playerArray[1] === combo[1] && playerArray[2] === combo[2]) {
-                alert('winner')
-            }
-        })
-    }
+    const truth = winningArray.filter(e=>playerArray.every(i=>e.includes(i)))
+    console.log(truth)
 }
 
 
