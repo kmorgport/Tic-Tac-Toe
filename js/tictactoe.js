@@ -42,7 +42,7 @@ function isTrue(arr, arr2){
 
 
 }
-function checkWinner(playerArray, winningArray) {
+function playercheckWinner(playerArray, winningArray) {
     if(playerArray.length<3)return
     for(let win of winningArray) {
         const truth = win.every(i => playerArray.includes(i))
@@ -54,7 +54,18 @@ function checkWinner(playerArray, winningArray) {
     }
     //turn state true to stop engine
 }
+function compcheckWinner(playerArray, winningArray) {
+    if(playerArray.length<3)return
+    for(let win of winningArray) {
+        const truth = win.every(i => playerArray.includes(i))
+        if(truth){
+            alert("womp womp you lost")
+            break
+        }
 
+    }
+    //turn state true to stop engine
+}
 
 function updateODisplay(){
     let random = Math.floor(Math.random()*(9));
@@ -72,9 +83,9 @@ function updateODisplay(){
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
-         checkWinner(playerArray,winningArray)
+         playercheckWinner(playerArray,winningArray)
          updateODisplay()
-        // tictactoe.checkWinner()
+         compcheckWinner(compArray,winningArray)
     })
 })
 
