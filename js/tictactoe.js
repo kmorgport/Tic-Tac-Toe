@@ -44,8 +44,17 @@ function isTrue(arr, arr2){
 }
 function checkWinner(playerArray, winningArray) {
     if(playerArray.length<3)return
-    const truth = winningArray.filter(e=>playerArray.every(i=>e.includes(i)))
-    console.log(truth)
+    let winstate = false
+    //while state is false dp shit
+    for(let win of winningArray) {
+        const truth = win.every(i => playerArray.includes(i))
+        if(truth){
+            console.log(truth)
+            break
+        }
+
+    }
+    //turn state true to stop engine
 }
 
 
