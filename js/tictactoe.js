@@ -44,12 +44,10 @@ function isTrue(arr, arr2){
 }
 function checkWinner(playerArray, winningArray) {
     if(playerArray.length<3)return
-    let winstate = false
-    //while state is false dp shit
     for(let win of winningArray) {
         const truth = win.every(i => playerArray.includes(i))
         if(truth){
-            console.log(truth)
+            alert("Youre a winner bruh!")
             break
         }
 
@@ -58,17 +56,24 @@ function checkWinner(playerArray, winningArray) {
 }
 
 
-function updateODisplay(tile){
+function updateODisplay(){
+    let random = Math.floor(Math.random()*(9));
+    while(playerArray.includes(random)){
+        random = Math.floor(Math.random()*(9));
+    }
     const img = document.createElement("img");
     img.src = oimage;
-    tile.appendChild(img);
+    const tile = document.getElementById(random)
+    tile.appendChild(img)
+    compArray.push(random);
+    compArray.sort()
 
 }
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
          checkWinner(playerArray,winningArray)
-        // tictactoe.computerGoes()
+         updateODisplay()
         // tictactoe.checkWinner()
     })
 })
