@@ -51,7 +51,7 @@ function checkWinner(playerArray, winningArray) {
 
 function updateODisplay(){
     let random = Math.floor(Math.random()*(9));
-    while(playerArray.includes(random)){
+    while(playerArray.includes(random)||compArray.includes(random)){
         random = Math.floor(Math.random()*(9));
     }
     const img = document.createElement("img");
