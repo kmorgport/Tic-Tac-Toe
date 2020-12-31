@@ -19,6 +19,7 @@ const oimage = "img/O.png";
 const playerArray = [];
 const compArray = [];
 const winningArray = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+let playerTurn = true;
 
 // const tictactoe = new Tictactoe(display);
 
@@ -34,36 +35,17 @@ function updateXDisplay(tile){
 
 }
 
-function isTrue(arr, arr2){
-   if(arr.some(i=>arr2.includes(i))){
-       alert('you won')
-   }
-
-
-
-}
-function playercheckWinner(playerArray, winningArray) {
+function checkWinner(playerArray, winningArray) {
+    if(!playerTurn)return
     if(playerArray.length<3)return
-    for(let win of winningArray) {
-        const truth = win.every(i => playerArray.includes(i))
-        if(truth){
-            alert("Youre a winner bruh!")
-            break
-        }
+        for(let win of winningArray) {
+            const truth = win.every(i => playerArray.includes(i))
+            if (truth) {
+                alert("Youre a winner bruh!")
+                return
+            }
+            }
 
-    }
-    //turn state true to stop engine
-}
-function compcheckWinner(playerArray, winningArray) {
-    if(playerArray.length<3)return
-    for(let win of winningArray) {
-        const truth = win.every(i => playerArray.includes(i))
-        if(truth){
-            alert("womp womp you lost")
-            break
-        }
-
-    }
     //turn state true to stop engine
 }
 
@@ -83,9 +65,9 @@ function updateODisplay(){
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
-         playercheckWinner(playerArray,winningArray)
+         checkWinner(playerArray,winningArray)
          updateODisplay()
-         compcheckWinner(compArray,winningArray)
+         checkWinner(compArray,winningArray)
     })
 })
 
