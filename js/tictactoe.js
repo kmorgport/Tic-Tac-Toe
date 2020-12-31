@@ -16,8 +16,8 @@ const display = document.querySelectorAll('[data-tile]');
 const reset = document.querySelector('[data-reset]');
 const ximage = "img/X.png";
 const oimage = "img/O.png";
-const playerArray = [];
-const compArray = [];
+let playerArray = [];
+let compArray = [];
 const winningArray = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 let playerTurn = true;
 
@@ -35,14 +35,15 @@ function updateXDisplay(tile){
 
 }
 
-function checkWinner(playerArray, winningArray) {
+function checkWinner(Array, winningArray) {
     if(!playerTurn)return
-    if(playerArray.length<3)return
+    if(Array.length<3)return
         for(let win of winningArray) {
-            const truth = win.every(i => playerArray.includes(i))
+            const truth = win.every(i => Array.includes(i))
             if (truth) {
                 alert("Youre a winner bruh!")
-                return
+                clear()
+
             }
             }
 
@@ -50,18 +51,29 @@ function checkWinner(playerArray, winningArray) {
 }
 
 function updateODisplay(){
-    let random = Math.floor(Math.random()*(9));
-    while(playerArray.includes(random)||compArray.includes(random)){
-        random = Math.floor(Math.random()*(9));
-    }
-    const img = document.createElement("img");
-    img.src = oimage;
-    const tile = document.getElementById(random)
-    tile.appendChild(img)
-    compArray.push(random);
-    compArray.sort()
 
+        let random = Math.floor(Math.random() * (9));
+        while (playerArray.includes(random) || compArray.includes(random)) {
+            random = Math.floor(Math.random() * (9));
+        }
+        const img = document.createElement("img");
+        img.src = oimage;
+        const tile = document.getElementById(random)
+        tile.appendChild(img)
+        compArray.push(random);
+        compArray.sort()
 }
+
+function clear(){
+
+    playerArray = []
+    compArray = []
+    display.forEach(tile=>{
+        tile.innerHTML=''
+    })
+}
+
+
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
