@@ -1,16 +1,4 @@
 "use strict"
-class Tictactoe{
-    constructor(display){
-        this.display = display;
-        this.reset();
-    }
-
-
-
-}
-
-
-
 
 const display = document.querySelectorAll('[data-tile]');
 const resetbtn = document.querySelector('[data-reset]');
@@ -20,6 +8,7 @@ let playerArray = [];
 let compArray = [];
 const winningArray = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 let gameState = true;
+let playerTurn = true;
 
 // const tictactoe = new Tictactoe(display);
 
@@ -37,9 +26,13 @@ function checkWinner(Array, winningArray) {
     if(Array.length<3)return
         for(let win of winningArray) {
             const truth = win.every(i => Array.includes(i))
-            if (truth) {
+            if (truth && playerTurn) {
                 alert("You won! Click reset to play again!")
                 gameState=false
+                clear()
+            } else if(truth&& !playerTurn){
+            alert("womp womp, you lost... Click reset to play again!!")
+                gameState = false
                 clear()
             }
             }
@@ -74,12 +67,22 @@ function reset(){
     gameState = true;
 }
 
+function switchTurns(){
+    if(playerTurn){
+        playerTurn = false
+    }else if(!playerTurn){
+        playerTurn = true;
+    }
+}
+
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
          updateXDisplay(tile)
          checkWinner(playerArray,winningArray)
+         switchTurns()
          updateODisplay()
          checkWinner(compArray,winningArray)
+         switchTurns()
     })
 })
 
