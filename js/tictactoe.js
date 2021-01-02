@@ -14,6 +14,7 @@ let playerTurn = true;
 
 function updateXDisplay(tile){
         const img = document.createElement("img");
+        img.setAttribute('class','mx-auto mt-5 d-block')
         img.src = ximage;
         tile.appendChild(img);
         const num = tile.getAttribute("id")
@@ -47,6 +48,7 @@ function updateODisplay(){
             random = Math.floor(Math.random() * (9));
         }
         const img = document.createElement("img");
+        img.setAttribute('class','mx-auto mt-5 d-block')
         img.src = oimage;
         const tile = document.getElementById(random)
         tile.appendChild(img)
