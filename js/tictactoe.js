@@ -19,7 +19,7 @@ const oimage = "img/O.png";
 let playerArray = [];
 let compArray = [];
 const winningArray = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-let playerTurn = true;
+let gameState = true;
 
 // const tictactoe = new Tictactoe(display);
 
@@ -31,19 +31,16 @@ function updateXDisplay(tile){
         playerArray.push(parseInt(num))
         playerArray.sort();
         console.log(playerArray)
-
-
 }
 
 function checkWinner(Array, winningArray) {
-    if(!playerTurn)return
     if(Array.length<3)return
         for(let win of winningArray) {
             const truth = win.every(i => Array.includes(i))
             if (truth) {
                 alert("Youre a winner bruh!")
+                gameState=false
                 clear()
-
             }
             }
 
@@ -51,7 +48,7 @@ function checkWinner(Array, winningArray) {
 }
 
 function updateODisplay(){
-
+        if(!gameState)return
         let random = Math.floor(Math.random() * (9));
         while (playerArray.includes(random) || compArray.includes(random)) {
             random = Math.floor(Math.random() * (9));
