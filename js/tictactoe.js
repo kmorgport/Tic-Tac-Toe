@@ -20,7 +20,6 @@ function updateXDisplay(tile){
         const num = tile.getAttribute("id")
         playerArray.push(parseInt(num))
         playerArray.sort();
-        console.log(playerArray)
 }
 
 function checkWinner(Array, winningArray) {
