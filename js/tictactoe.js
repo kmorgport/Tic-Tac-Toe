@@ -13,7 +13,7 @@ class Tictactoe{
 
 
 const display = document.querySelectorAll('[data-tile]');
-const reset = document.querySelector('[data-reset]');
+const resetbtn = document.querySelector('[data-reset]');
 const ximage = "img/X.png";
 const oimage = "img/O.png";
 let playerArray = [];
@@ -38,7 +38,7 @@ function checkWinner(Array, winningArray) {
         for(let win of winningArray) {
             const truth = win.every(i => Array.includes(i))
             if (truth) {
-                alert("Youre a winner bruh!")
+                alert("You won! Click reset to play again!")
                 gameState=false
                 clear()
             }
@@ -70,6 +70,9 @@ function clear(){
     })
 }
 
+function reset(){
+    gameState = true;
+}
 
 display.forEach(tile=>{
     tile.addEventListener('click',()=>{
@@ -78,6 +81,12 @@ display.forEach(tile=>{
          updateODisplay()
          checkWinner(compArray,winningArray)
     })
+})
+
+resetbtn.addEventListener('click',()=>{
+    clear()
+    reset()
+
 })
 
 // reset.addEventListener('click',()=>{
